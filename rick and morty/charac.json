@@ -1,0 +1,11 @@
+{
+    "id": 1,
+    "name": "Rick Sanchez",
+    "origin": {
+        "name": "Earth (C-137)"
+    },
+    "location": {
+        "name": "Citadel of Ricks"
+    },
+    "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+}
