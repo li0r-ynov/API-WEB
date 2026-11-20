@@ -1,0 +1,16 @@
+{
+    "pokedex_id": 1,
+    "category": "Pokémon Graine",
+    "name": {
+        "fr": "Bulbizarre"
+    },
+    "sprites": {
+        "regular": "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/sprites/1/regular.png",
+    },
+    "types": [
+        {
+            "name": "Plante",
+            "image": "https://raw.githubusercontent.com/Yarkis01/TyraDex/images/types/plante.png"
+        }
+    ]
+}
