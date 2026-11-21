@@ -34,6 +34,10 @@ func ShowCharacter(w http.ResponseWriter, r *http.Request) {
 		renderAPIError(w, err)
 		return
 	}
+	if character.ID == 0 {
+		renderAPIError(w, models.ErrNotFound)
+		return
+	}
 	helpers.Render(w, http.StatusOK, "character", character)
 }
 
@@ -50,7 +54,7 @@ func renderAPIError(w http.ResponseWriter, err error) {
 			"Ce pokémon n'existe pas.")
 	case errors.Is(err, models.ErrBadRequest):
 		helpers.RenderError(w, http.StatusBadRequest,
-			"Identifiant de pokémon invalide.")
+			"Numéro de Pokémon invalide.")
 	case errors.Is(err, models.ErrUnavailable):
 		log.Println("The Rick and Morty API :", err)
 		helpers.RenderError(w, http.StatusServiceUnavailable,
