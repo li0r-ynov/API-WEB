@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	baseURL   = "https://tyradex.app/api/v1/pokemon"
+	baseURL   = "https://tyradex.app/api"
 	userAgent = "RickAndMorty-Ynov/1.0 (contact@exemple.fr)"
 )
 
