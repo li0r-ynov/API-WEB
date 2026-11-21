@@ -1,31 +1,38 @@
 {{define "list"}}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>{{.Name.French}} – Pokémon</title>
-  <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-  <h1>Les pokemons&amp;</h1>
-  <form action="/pokemon" method="get" class="search">
-    <input type="search" name="nom" value="{{.Search}}" placeholder="Rechercher un personnage">
-    <button type="submit">Rechercher</button>
-  </form>
-  <ul class="grid">
-    {{range .Characters}}
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pokédex Pokémon</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <h1>Les pokemons</h1>
+    <form action="/pokemon" method="get" class="search">
+      <input
+        type="search"
+        name="nom"
+        value="{{.Search}}"
+        placeholder="Rechercher un personnage"
+      />
+      <button type="submit">Rechercher</button>
+    </form>
+    <ul class="grid">
+      {{range .Characters}}
       <li class="card">
         <a href="/pokemon/{{.ID}}">
-          <img src="{{.Sprites.Regular}}" alt="{{.Name.French}}">
+          <img src="{{.Sprites.Regular}}" alt="{{.Name.French}}" />
           <strong>{{.Name.French}}</strong>
           <span>{{range .Types}}{{.Name}} {{end}}</span>
         </a>
       </li>
-    {{else}}
+      {{else}}
       <li>Aucun pokémon ne correspond à « {{.Search}} ».</li>
-    {{end}}
-  </ul>
-  <footer>Données : Tyradex - Une API Pokémon en français (https://tyradex.app)</footer>
-</body>
+      {{end}}
+    </ul>
+    <footer>
+      Données : Tyradex - Une API Pokémon en français (https://tyradex.app)
+    </footer>
+  </body>
 </html>
 {{end}}
