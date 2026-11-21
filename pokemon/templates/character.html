@@ -1,25 +1,31 @@
 {{define "character"}}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>{{.Name}} – Pokémon&amp;</title>
-  <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-  <a href="pokemon">← Retour à la liste</a>
-  <h1>{{.Name}}</h1>
-  <img src="{{.Image}}" alt="{{.Name}}">
-  <p>
-    <span class="status {{if eq .Status "Alive"}}alive{{else if eq .Status "Dead"}}dead{{else}}unknown{{end}}"></span>
-    {{.Status}} – {{.Species}} – {{.Gender}}
-  </p>
-  <ul>
-    <li>Origine : {{.Origin.Name}}</li>
-    <li>Lieu actuel : {{.Location.Name}}</li>
-    <li>Nombre d'épisodes : {{len .Episode}}</li>
-  </ul>
-  <footer>Données : Tyradex - Une API Pokémon en français (https://tyradex.app)</footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{.Name.French}} – Pokémon</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <a href="/pokemon">← Retour à la liste</a>
+    <h1>{{.Name.French}}</h1>
+    <img src="{{.Sprites.Regular}}" alt="{{.Name.French}}" />
+    <p>
+      <strong>Types :</strong>
+      {{range .Types}} {{.Name}} {{end}}
+    </p>
+
+    <ul>
+      <li>PV : {{.Stats.HP}}</li>
+      <li>Attaque : {{.Stats.Attack}}</li>
+      <li>Défense : {{.Stats.Defense}}</li>
+      <li>Attaque spéciale : {{.Stats.SpecialAttack}}</li>
+      <li>Défense spéciale : {{.Stats.SpecialDefense}}</li>
+      <li>Vitesse : {{.Stats.Speed}}</li>
+    </ul>
+    <footer>
+      Données : Tyradex - Une API Pokémon en français (https://tyradex.app)
+    </footer>
+  </body>
 </html>
 {{end}}

@@ -71,6 +71,6 @@ func GetCharacters(name string) (models.CharacterPage, error) {
 // GetCharacter renvoie la fiche d'un personnage (endpoint /character/{id}).
 func GetCharacter(id int) (models.Character, error) {
 	var character models.Character
-	err := get(fmt.Sprintf("/api/v1/pokemon%d", id), &character)
+	err := get(fmt.Sprintf("/api/v1/pokemon/%d", id), &character)
 	return character, err
 }
