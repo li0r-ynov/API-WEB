@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	baseURL   = "https://tyradex.app/api"
+	baseURL   = "https://tyradex.app"
 	userAgent = "RickAndMorty-Ynov/1.0 (contact@exemple.fr)"
 )
 
@@ -57,7 +57,7 @@ func get(endpoint string, dest any) error {
 // GetCharacters renvoie la première page des personnages (endpoint /character).
 // Si name n'est pas vide, l'API ne renvoie que les personnages dont le nom le contient.
 func GetCharacters(name string) (models.CharacterPage, error) {
-	endpoint := "/character"
+	endpoint := "/api/v1/pokemon"
 	if name != "" {
 		params := url.Values{}
 		params.Set("name", name)
@@ -71,6 +71,6 @@ func GetCharacters(name string) (models.CharacterPage, error) {
 // GetCharacter renvoie la fiche d'un personnage (endpoint /character/{id}).
 func GetCharacter(id int) (models.Character, error) {
 	var character models.Character
-	err := get(fmt.Sprintf("/character/%d", id), &character)
+	err := get(fmt.Sprintf("/api/v1/pokemon%d", id), &character)
 	return character, err
 }

@@ -1,0 +1,25 @@
+{{define "character"}}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>{{.Name}} – Pokémon&amp;</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <a href="pokemon">← Retour à la liste</a>
+  <h1>{{.Name}}</h1>
+  <img src="{{.Image}}" alt="{{.Name}}">
+  <p>
+    <span class="status {{if eq .Status "Alive"}}alive{{else if eq .Status "Dead"}}dead{{else}}unknown{{end}}"></span>
+    {{.Status}} – {{.Species}} – {{.Gender}}
+  </p>
+  <ul>
+    <li>Origine : {{.Origin.Name}}</li>
+    <li>Lieu actuel : {{.Location.Name}}</li>
+    <li>Nombre d'épisodes : {{len .Episode}}</li>
+  </ul>
+  <footer>Données : Tyradex - Une API Pokémon en français (https://tyradex.app)</footer>
+</body>
+</html>
+{{end}}

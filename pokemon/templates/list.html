@@ -8,17 +8,17 @@
 </head>
 <body>
   <h1>Les pokemons&amp;</h1>
-  <form action="/personnages" method="get" class="search">
+  <form action="/pokemon" method="get" class="search">
     <input type="search" name="nom" value="{{.Search}}" placeholder="Rechercher un personnage">
     <button type="submit">Rechercher</button>
   </form>
   <ul class="grid">
     {{range .Characters}}
       <li class="card">
-        <a href="/personnages/{{.ID}}">
-          <img src="{{.Image}}" alt="{{.Name}}">
-          <strong>{{.Name}}</strong>
-          <span>{{.Status}} – {{.Species}}</span>
+        <a href="/pokemon/{{.ID}}">
+          <img src="{{.Sprites.Regular}}" alt="{{.Name.French}}">
+          <strong>{{.Name.French}}</strong>
+          <span>{{range .Types}}{{.Name}} {{end}}</span>
         </a>
       </li>
     {{else}}

@@ -1,26 +1,65 @@
 package models
 
-// CharacterPage : une page de la liste des personnages.
-// Seul le tableau "results" est utile ici (l'objet "info" sert à la pagination).
+import "encoding/json"
+
+// CharacterPage contient la liste de Pokémon renvoyée par Tyradex.
+// L'API renvoie directement un tableau JSON, sans objet "results" autour.
 type CharacterPage struct {
-	Results []Character `json:"results"`
+	Results []Character
 }
 
-// Character : fiche d'un personnage renvoyée par Tyradex - Une API Pokémon en français.
-// Seuls les champs utiles au site sont déclarés.
+// UnmarshalJSON adapte le tableau de l'API au champ Results utilisé par le service.
+func (page *CharacterPage) UnmarshalJSON(data []byte) error {
+	return json.Unmarshal(data, &page.Results)
+}
+
+// Character représente les champs principaux d'un Pokémon dans Tyradex.
 type Character struct {
-	ID              int      `json:"pokedex_id"`
-	Category        string   `json:"category"`
-	Name            string   `json:"name"`
-	Language        string   `json:"fr"`
-	Graphic_element string   `json:"sprites"`
-	Type_graphic    string   `json:"regular"`
-	Types           []string `json:"types"`
-	Stats           []string `json:"stats"`
-	Skills          []string `json:"talents"`
+	ID         int      `json:"pokedex_id"`
+	Generation int      `json:"generation"`
+	Category   string   `json:"category"`
+	Name       Names    `json:"name"`
+	Sprites    Sprites  `json:"sprites"`
+	Types      []Type   `json:"types"`
+	Stats      Stats    `json:"stats"`
+	Talents    []Talent `json:"talents"`
+	Height     string   `json:"height"`
+	Weight     string   `json:"weight"`
 }
 
-// Place : un lieu (origine ou lieu actuel du personnage).
-type Place struct {
-	Name string `json:"name"`
+// Names contient les noms dans les langues proposées par l'API.
+type Names struct {
+	French   string `json:"fr"`
+}
+
+// Sprites contient les URL des illustrations du Pokémon.
+type Sprites struct {
+	Regular string             `json:"regular"`
+}
+
+// GigantamaxSprites contient les illustrations Gigamax, quand elles existent.
+type GigantamaxSprites struct {
+	Regular string `json:"regular"`
+}
+
+// Type est un type élémentaire et son icône.
+type Type struct {
+	Name  string `json:"name"`
+	Image string `json:"image"`
+}
+
+// Stats contient les statistiques de base.
+type Stats struct {
+	HP             int `json:"hp"`
+	Attack         int `json:"atk"`
+	Defense        int `json:"def"`
+	SpecialAttack  int `json:"spe_atk"`
+	SpecialDefense int `json:"spe_def"`
+	Speed          int `json:"vit"`
+}
+
+// Talent décrit une capacité et précise si elle est cachée (talent caché).
+type Talent struct {
+	Name   string `json:"name"`
+	Hidden bool   `json:"tc"`
 }
